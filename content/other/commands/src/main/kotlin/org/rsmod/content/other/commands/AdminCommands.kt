@@ -8,7 +8,6 @@ import org.rsmod.annotations.InternalApi
 import org.rsmod.api.invtx.invAdd
 import org.rsmod.api.invtx.invClear
 import org.rsmod.api.invtx.invDel
-import org.rsmod.api.invtx.invDelAll
 import org.rsmod.api.player.output.MiscOutput
 import org.rsmod.api.player.output.mes
 import org.rsmod.api.player.protect.ProtectedAccessLauncher
@@ -79,6 +78,7 @@ constructor(
 
     override fun ScriptContext.startup() {
         onCommand("master", "Max out all stats", ::master)
+        onCommand("lv", "Max out all stats", ::lv)
         onCommand("reset", "Reset all stats", ::reset)
         onCommand("mypos", "Get current coordinates", ::mypos)
         onCommand("empty", "Remove all items from inventory", ::empty)
@@ -112,6 +112,30 @@ constructor(
     }
 
     private fun master(cheat: Cheat) = with(cheat) { player.setStatLevels(level = 99) }
+
+    private fun lv(cheat: Cheat) =
+        with(cheat) {
+            val statString = args[0]
+            val level = args[1].toByte()
+            val stat = statTypes.values.firstOrNull { it.internalName == statString }
+
+            if (stat == null) {
+                player.mes("'$statString' is not a valid skill.")
+                return@with
+            }
+
+            val currentXp = player.statMap.getXP(stat)
+            val xp = PlayerSkillXPTable.getXPFromLevel(level.toInt())
+            val xpDiff = (xp - currentXp).toDouble()
+
+            player.mes("${stat.internalName} level was set to $level")
+            player.statMap.setCurrentLevel(stat, level)
+
+            if (xpDiff < 0)
+                player.statRevert(stat, level.toInt(), PlayerSkillXPTable.getXPFromLevel(level.toInt()))
+            else
+               player.statAdvance(stat, xpDiff, 1.0, 1.0)
+        }
 
     private fun reset(cheat: Cheat) = with(cheat) { player.setStatLevels(level = 1) }
 
