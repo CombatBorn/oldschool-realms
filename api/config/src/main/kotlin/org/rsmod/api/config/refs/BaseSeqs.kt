@@ -267,4 +267,75 @@ object BaseSeqs : SeqReferences() {
     val emote_varlamore_salute_loop = find("emote_varlamore_salute_loop", 5016367684387565325)
 
     val cow_update_graze = find("cow_update_graze", 1478576823858649669)
+
+    /**
+     *
+     * Mining anims
+     *
+     */
+
+    val human_mining_bronze_pickaxe = find("human_mining_bronze_pickaxe")
+    val human_mining_iron_pickaxe = find("human_mining_iron_pickaxe")
+    val human_mining_steel_pickaxe = find("human_mining_steel_pickaxe")
+    val human_mining_black_pickaxe = find("human_mining_black_pickaxe")
+    val human_mining_mithril_pickaxe = find("human_mining_mithril_pickaxe")
+    val human_mining_adamant_pickaxe = find("human_mining_adamant_pickaxe")
+    val human_mining_rune_pickaxe = find("human_mining_rune_pickaxe")
+
+    val human_mining_dragon_pickaxe = find("human_mining_dragon_pickaxe")
+    val human_mining_dragon_pickaxe_pretty = find("human_mining_dragon_pickaxe_pretty")
+    val human_mining_zalcano_pickaxe = find("human_mining_zalcano_pickaxe")
+    val human_mining_trailblazer_pickaxe_no_infernal = find("human_mining_trailblazer_pickaxe_no_infernal")
+    val human_mining_trailblazer_reloaded_pickaxe_no_infernal = find("human_mining_trailblazer_reloaded_pickaxe_no_infernal")
+
+
+
+    val human_mining_infernal_pickaxe = find("human_mining_infernal_pickaxe")
+    val human_mining_crystal_pickaxe = find("human_mining_crystal_pickaxe")
+    val human_mining_gilded_pickaxe = find("human_mining_gilded_pickaxe")
+    val human_mining_3a_pickaxe = find("human_mining_3a_pickaxe")
+
+
+    //noreach anims
+    val human_mining_bronze_pickaxe_noreachforward = find("human_mining_bronze_pickaxe_noreachforward")
+    val human_mining_iron_pickaxe_noreachforward = find("human_mining_iron_pickaxe_noreachforward")
+    val human_mining_steel_pickaxe_noreachforward = find("human_mining_steel_pickaxe_noreachforward")
+    val human_mining_black_pickaxe_noreachforward = find("human_mining_black_pickaxe_noreachforward")
+    val human_mining_mithril_pickaxe_noreachforward = find("human_mining_mithril_pickaxe_noreachforward")
+    val human_mining_adamant_pickaxe_noreachforward = find("human_mining_adamant_pickaxe_noreachforward")
+    val human_mining_rune_pickaxe_noreachforward = find("human_mining_rune_pickaxe_noreachforward")
+
+    val human_mining_dragon_pickaxe_noreachforward = find("human_mining_dragon_pickaxe_noreachforward")
+    val human_mining_dragon_pickaxe_pretty_noreachforward = find("human_mining_dragon_pickaxe_pretty_noreachforward")
+    val human_mining_zalcano_pickaxe_noreachforward = find("human_mining_zalcano_pickaxe_noreachforward")
+    val human_mining_trailblazer_pickaxe_no_infernal_noreachforward = find("human_mining_trailblazer_pickaxe_no_infernal_noreachforward")
+    val human_mining_trailblazer_reloaded_pickaxe_no_infernal_noreachforward = find("human_mining_trailblazer_reloaded_pickaxe_no_infernal_noreachforward")
+
+    val human_mining_infernal_pickaxe_noreachforward = find("human_mining_infernal_pickaxe_noreachforward")
+    val human_mining_crystal_pickaxe_noreachforward = find("human_mining_crystal_pickaxe_noreachforward")
+    val human_mining_gilded_pickaxe_noreachforward = find("human_mining_gilded_pickaxe_noreachforward")
+
+    val human_mining_3a_pickaxe_noreachforward = find("human_mining_3a_pickaxe_noreachforward")
+
+
+    //Wall anims
+    val human_mining_bronze_pickaxe_wall = find("human_mining_bronze_pickaxe_wall")
+    val human_mining_iron_pickaxe_wall = find("human_mining_iron_pickaxe_wall")
+    val human_mining_steel_pickaxe_wall = find("human_mining_steel_pickaxe_wall")
+    val human_mining_black_pickaxe_wall = find("human_mining_black_pickaxe_wall")
+    val human_mining_mithril_pickaxe_wall = find("human_mining_mithril_pickaxe_wall")
+    val human_mining_adamant_pickaxe_wall = find("human_mining_adamant_pickaxe_wall")
+    val human_mining_rune_pickaxe_wall = find("human_mining_rune_pickaxe_wall")
+
+
+    val human_mining_dragon_pickaxe_wall = find("human_mining_dragon_pickaxe_wall")
+    val human_mining_dragon_pickaxe_pretty_wall = find("human_mining_dragon_pickaxe_pretty_wall")
+    val human_mining_zalcano_pickaxe_wall = find("human_mining_zalcano_pickaxe_wall")
+    val human_mining_trailblazer_pickaxe_no_infernal_wall = find("human_mining_trailblazer_pickaxe_wall")
+    val human_mining_trailblazer_reloaded_pickaxe_no_infernal_wall = find("human_mining_trailblazer_reloaded_pickaxe_no_infernal_wall")
+
+    val human_mining_infernal_pickaxe_wall = find("human_mining_infernal_pickaxe_wall")
+    val human_mining_crystal_pickaxe_wall = find("human_mining_crystal_pickaxe_wall")
+    val human_mining_gilded_pickaxe_wall = find("human_mining_gilded_pickaxe_wall")
+    val human_mining_3a_pickaxe_wall = find("human_mining_3a_pickaxe_wall")
 }

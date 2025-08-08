@@ -410,10 +410,24 @@ object BaseObjs : ObjReferences() {
     val infernal_axe_or = find("trailblazer_axe")
     val crystal_axe = find("crystal_axe")
 
+    /**
+     *
+     *
+     * Mining Pickaxes
+     *
+     *
+     */
     val bronze_pickaxe = find("bronze_pickaxe")
+    val iron_pickaxe = find("iron_pickaxe")
+    val steel_pickaxe = find("steel_pickaxe")
+    val black_pickaxe = find("black_pickaxe")
+    val mithril_pickaxe = find("mithril_pickaxe")
+    val adamant_pickaxe = find("adamant_pickaxe")
+    val rune_pickaxe = find("rune_pickaxe")
     val dragon_pickaxe = find("dragon_pickaxe")
     val dragon_pickaxe_upgraded = find("dragon_pickaxe_pretty")
     val dragon_pickaxe_or_trailblazer = find("trailblazer_pickaxe_no_infernal")
+    val dragon_pickaxe_or_trailblazer_reloaded = find("trailblazer_reloaded_pickaxe_no_infernal")
     val dragon_pickaxe_or_zalcano = find("zalcano_pickaxe")
     val infernal_pickaxe = find("infernal_pickaxe")
     val infernal_pickaxe_uncharged = find("infernal_pickaxe_empty")
@@ -1088,4 +1102,49 @@ object BaseObjs : ObjReferences() {
     val furnace_icon = find("furnace_icon_dummy", 937693285129466531)
     val mining_icon = find("mining_tutor_icon_dummy", 1887266795659978258)
     val smithing_icon = find("smithing_tutor_icon_dummy", 5958751754372942517)
+
+    //Mining Items
+    val tin_ore = find("tin_ore", 1224255817674606991)
+    val copper_ore = find("copper_ore", 496106362245337396)
+    val iron_ore = find("iron_ore")
+
+    val silver_ore = find ("silver_ore")
+    val clay = find("clay")
+    val blankrune = find("blankrune")
+    val limestone = find("limestone")
+    val star_dust = find("star_dust")
+    val blurite_ore = find("blurite_ore")
+    val camdozaal_barronite_shard = find("camdozaal_barronite_shard")
+    val sang_jas_ore = find("sang_jas_ore")
+    val fossil_volcanic_ash = find("fossil_volcanic_ash")
+    val blankrune_high = find("blankrune_high")
+    val coal = find("coal")
+    val paydirt = find("paydirt")
+    val enakh_sandstone_tiny = find("enakh_sandstone_tiny")
+    val enakh_sandstone_small = find("enakh_sandstone_small")
+    val enakh_sandstone_medium = find("enakh_sandstone_medium")
+    val enakh_sandstone_large = find("enakh_sandstone_large")
+    val arceuus_essence_block = find("arceuus_essence_block")
+    val brut_bronze_spear_kp = find("brut_bronze_spear_kp")
+    val cert_brut_bronze_spear_p = find("cert_brut_bronze_spear_p")
+    val ntk_scarab_stone = find("ntk_scarab_stone")
+    val cert_ntk_scarab_stone = find("cert_ntk_scarab_stone")
+    val ntk_scarab_pottery = find("ntk_scarab_pottery")
+    val gold_ore = find("gold_ore")
+    val lovakengj_sulphur = find("lovakengj_sulphur")
+    val lovakengj_blasted_ore = find("lovakengj_blasted_ore")
+    val enakh_granite_tiny = find("enakh_granite_tiny")
+    val enakh_granite_small = find("enakh_granite_small")
+    val enakh_granite_medium = find("enakh_granite_medium")
+    val mithril_ore = find("mithril_ore")
+    val quest_lunar_magic_ore = find("quest_lunar_magic_ore")
+    val daeyalt_shard = find("daeyalt_shard")
+    val lovakite_ore = find("lovakite_ore")
+    val adamantite_ore = find("adamantite_ore")
+    val softclay = find("softclay")
+    val ancient_essence = find("ancient_essence")
+    val infernal_shale = find("infernal_shale")
+    val runite_ore = find("runite_ore")
+    val amethyst = find("amethyst")
+
 }

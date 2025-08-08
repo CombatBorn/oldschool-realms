@@ -194,6 +194,8 @@ object BaseParams : ParamReferences() {
     val skill_productitem: ParamObj = find("skill_productitem")
     val skill_xp: ParamInt = find("skill_xp")
     val skill_anim: ParamSeq = find("skill_anim")
+    val mineable_wall: ParamBool = find("mineable_wall")
+    val wall_anim: ParamSeq = find("wall_anim")
     val game_message: ParamStr = find("game_message")
     val game_message2: ParamStr = find("game_message2")
     val climb_anim: ParamSeq = find("climb_anim")
@@ -201,4 +203,5 @@ object BaseParams : ParamReferences() {
     val opensound: ParamSynth = find("opensound")
     val next_loc_stage: ParamLoc = find("next_loc_stage")
     val shop_sale_restricted: ParamBool = find("shop_sale_restricted")
+    val pickaxeTickRates: ParamInt = find("mining_pickaxe_tick_rates")
 }

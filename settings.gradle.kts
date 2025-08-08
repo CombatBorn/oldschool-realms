@@ -52,3 +52,5 @@ fun searchProject(parentName: String, root: Path, currentPath: Path) {
 }
 
 include("content:minigame")
+include("content:skills:mining")
+include("api:vardumper")

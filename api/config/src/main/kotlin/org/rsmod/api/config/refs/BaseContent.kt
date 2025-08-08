@@ -58,4 +58,7 @@ object BaseContent : ContentReferences() {
     val fountains = find("fountains")
     val grimy_herbs = find("grimy_herbs")
     val clean_herbs = find("clean_herbs")
+    val rocks = find("rocks")
+    val mining_pickaxe = find("mining_pickaxe")
+
 }

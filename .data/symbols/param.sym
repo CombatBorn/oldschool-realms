@@ -298,3 +298,7 @@
 65532	closesound
 65533	next_loc_stage
 65534	opensound
+65535	mining_pickaxe_tick_rates
+65536	rocks_success_rates
+65537	mineable_wall
+65538	wall_anim
