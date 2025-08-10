@@ -85,6 +85,7 @@ constructor(
         onCommand("tele", "Teleport to coordgrid", ::tele) {
             invalidArgs = "Use as ::tele level mx mz lx lz (ex: 0 50 50 0 0)"
         }
+        onCommand("tp", "Teleport to coordgrid", ::tp)
         onCommand("telezone", "Teleport to zone key", ::teleZone) {
             invalidArgs = "Use as ::telezone zoneX zoneY level (ex: 400 400 0)"
         }
@@ -157,6 +158,27 @@ constructor(
                     continue
                 player.invDel(inv = player.inv, obj = item.id, count = item.count)
             }
+        }
+    }
+
+
+
+    private fun tp(cheat: Cheat) {
+        with(cheat) {
+
+            val x = args[0].toInt()
+            val z = args[1].toInt()
+            var y = 0
+            if (args.size == 3) {
+                y = args[2].toInt()
+            }
+            val coords = CoordGrid(x, z, y)
+
+            protectedAccess.launch(player) {
+                player.mes("Teleported to $coords.")
+                telejump(coords)
+            }
+
         }
     }
 
