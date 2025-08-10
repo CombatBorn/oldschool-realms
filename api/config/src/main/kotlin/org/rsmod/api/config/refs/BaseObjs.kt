@@ -1146,5 +1146,7 @@ object BaseObjs : ObjReferences() {
     val infernal_shale = find("infernal_shale")
     val runite_ore = find("runite_ore")
     val amethyst = find("amethyst")
-
+    //fishing
+    val small_fishing_net = find("net")
+    val raw_shrimp = find("raw_shrimp")
 }
