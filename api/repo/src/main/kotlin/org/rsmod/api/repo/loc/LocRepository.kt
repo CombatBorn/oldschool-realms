@@ -86,6 +86,22 @@ constructor(
         return del(loc, duration)
     }
 
+    public fun deleteBypassChecks(loc: LocInfo, duration: Int): Boolean {
+        val delete = locReg.del(loc)
+
+        if (!delete.isSuccess()) {
+            return false
+        }
+        val revertCycle = mapClock + duration
+        val validator = delete.regionValidator()
+        val locDuration = LocCycleDuration(loc, revertCycle, validator)
+        addDurations.removeExisting(loc)
+        delDurations.removeExisting(loc)
+        delDurations.add(locDuration)
+
+        return true
+    }
+
     public fun change(from: LocInfo, into: LocType, duration: Int) {
         add(from.coords, into, duration, from.angle, from.shape)
     }

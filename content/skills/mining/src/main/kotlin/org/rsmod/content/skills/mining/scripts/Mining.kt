@@ -23,6 +23,7 @@ import org.rsmod.events.UnboundEvent
 import org.rsmod.game.entity.Player
 import org.rsmod.game.inv.InvObj
 import org.rsmod.game.loc.BoundLocInfo
+import org.rsmod.game.loc.LocInfo
 import org.rsmod.game.type.enums.EnumTypeList
 import org.rsmod.game.type.enums.UnpackedEnumType
 import org.rsmod.game.type.loc.LocType
@@ -49,6 +50,8 @@ constructor(
         onOpLoc3(content.rocks) { mine(it.loc, it.type) }
 
     }
+
+    private val locInteractionTickMap: MutableMap<BoundLocInfo, Int> = HashMap()
 
     private fun ProtectedAccess.attempt(rock: BoundLocInfo, type: UnpackedLocType) {
         if (player.miningLvl < type.miningLevelReq) {
@@ -123,10 +126,32 @@ constructor(
             invAdd(inv, product)
             publish(MinedOre(player, rock, product))
 
-            //change rock and then respawn
-            val respawnTime = type.resolveRespawnTime(random)
-            locRepo.change(rock, type.drainedRock, respawnTime)
-            resetAnim()
+            if (type.motherlode) {
+                // rock is being obtained right now
+
+                if (locInteractionTickMap[rock] == null) {
+                    locInteractionTickMap[rock] = mapClock
+                }
+                val lastInteraction = locInteractionTickMap[rock]!!
+                val tickNumber = mapClock - lastInteraction
+
+                val resetRock = mapClock - lastInteraction > 145
+                if (resetRock) {
+                    locInteractionTickMap[rock] = mapClock
+                } else if (tickNumber > 45) {
+                    val respawnTime = lastInteraction + 145 + (Math.random() * 8).toInt() - mapClock
+                    val loc = LocInfo(rock.layer, rock.coords, rock.entity)
+                    locRepo.deleteBypassChecks(loc, respawnTime)
+                    resetAnim()
+                }
+            }
+
+            else {
+                //change rock and then respawn
+                val respawnTime = type.resolveRespawnTime(random)
+                locRepo.change(rock, type.drainedRock, respawnTime)
+                resetAnim()
+            }
         }
 
         opLoc3(rock)
@@ -200,6 +225,7 @@ constructor(
         val UnpackedLocType.miningLevelReq: Int by locParam(params.levelrequire)
         val UnpackedLocType.rockOre: ObjType by locParam(params.skill_productitem)
         val UnpackedLocType.miningXp: Double by locXpParam(params.skill_xp)
+        val UnpackedLocType.motherlode: Boolean by locParam(params.motherlode)
         val UnpackedLocType.rockRespawnTime: Int by locParam(params.respawn_time)
         val UnpackedLocType.rockRespawnTimeLow: Int by locParam(params.respawn_time_low)
         val UnpackedLocType.rockRespawnTimeHigh: Int by locParam(params.respawn_time_high)
@@ -225,7 +251,6 @@ constructor(
         }
         return null
     }
-
 
 
 }
