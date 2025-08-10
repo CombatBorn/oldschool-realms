@@ -3,8 +3,10 @@ package org.rsmod.content.interfaces.settings.scripts
 import jakarta.inject.Inject
 import org.rsmod.api.config.refs.interfaces
 import org.rsmod.api.player.output.mes
+import org.rsmod.api.player.output.runClientScript
 import org.rsmod.api.player.protect.ProtectedAccess
 import org.rsmod.api.player.protect.ProtectedAccessLauncher
+import org.rsmod.api.player.ui.ifCloseSub
 import org.rsmod.api.player.ui.ifSetEvents
 import org.rsmod.api.player.vars.enumVarBit
 import org.rsmod.api.script.onIfOpen
@@ -28,6 +30,10 @@ class SettingsSideScript @Inject constructor(private val protectedAccess: Protec
         onIfOverlayButton(setting_components.audio_tab) { player.panel = Panel.Audio }
         onIfOverlayButton(setting_components.display_tab) { player.panel = Panel.Display }
 
+        onIfOverlayButton(setting_components.settings_close) {
+            player.ifCloseSub(interfaces.settings, eventBus)
+            player.runClientScript(5474, 61101605, 26664, 0, 1, 176, 16765184, 0)
+        }
         onIfOverlayButton(setting_components.settings_open) { player.selectAllSettings() }
     }
 
@@ -48,6 +54,7 @@ class SettingsSideScript @Inject constructor(private val protectedAccess: Protec
             mes("Please finish what you are doing before opening the settings menu.")
         }
     }
+
 
     private fun ProtectedAccess.openAllSettings() {
         // TODO(content): varp `settings_tracking` is spam synced here for some reason.
