@@ -188,6 +188,7 @@ object BaseParams : ParamReferences() {
     val respawn_time_low: ParamInt = find("respawn_time_low")
     val respawn_time_high: ParamInt = find("respawn_time_high")
     val respawn_time: ParamInt = find("respawn_time")
+    val motherlode: ParamBool = find("motherlode")
     val despawn_time: ParamInt = find("despawn_time")
     val deplete_chance: ParamInt = find("deplete_chance")
     val skill_sound: ParamSynth = find("skill_sound")

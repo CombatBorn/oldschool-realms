@@ -305,40 +305,43 @@ internal object MiningOres : LocEditor() {
             isWall = true
         )
 
-        configureMotherlodeWall(
+        configureRock(
             rock = rocks.motherlode_ore_single,
             drained = drainedRocks.motherlode_depleted_single,
             ore = objs.paydirt,
-            respawnTime = 100,
-
+            respawnTime = 0,
+            motherlode = true,
             miningXp = 60.0,
             miningLevel = 30,
             isWall = true
         )
-        configureMotherlodeWall(
+        configureRock(
             rock = rocks.motherlode_ore_middle,
             drained = drainedRocks.motherlode_depleted_middle,
             ore = objs.paydirt,
-            respawnTime = 100,
+            respawnTime = 0,
+            motherlode = true,
             miningXp = 60.0,
             miningLevel = 30,
             isWall = true
         )
-        configureMotherlodeWall(
+        configureRock(
             rock = rocks.motherlode_ore_left,
             drained = drainedRocks.motherlode_depleted_left,
             ore = objs.paydirt,
-            respawnTime = 100,
+            respawnTime = 0,
+            motherlode = true,
             miningXp = 60.0,
             miningLevel = 30,
             isWall = true
         )
 
-        configureMotherlodeWall(
+        configureRock(
             rock = rocks.motherlode_ore_right,
             drained = drainedRocks.motherlode_depleted_right,
             ore = objs.paydirt,
-            respawnTime = 100,
+            respawnTime = 0,
+            motherlode = true,
             miningXp = 60.0,
             miningLevel = 30,
             isWall = true
@@ -351,24 +354,12 @@ internal object MiningOres : LocEditor() {
 
 
 
-    private fun configureRock(rock: LocType, drained: LocType, ore: ObjType, respawnTime: Int, miningXp : Double, miningLevel: Int, isWall : Boolean = false) {
+    private fun configureRock(rock: LocType, drained: LocType, ore: ObjType, respawnTime: Int, motherlode: Boolean = false,
+                              miningXp : Double, miningLevel: Int, isWall : Boolean = false) {
         edit(rock) {
             contentGroup = content.rocks
             param[params.respawn_time] = respawnTime
-            param[params.levelrequire] = miningLevel // Set the required mining level
-            param[params.skill_xp] = PlayerStatMap.toFineXP(miningXp).toInt()
-            param[params.skill_productitem] = ore
-            param[params.next_loc_stage] = drained
-            param[params.mineable_wall] = isWall
-            param[rockSuccessRates] = MiningEnums.rocks
-        }
-    }
-
-    private fun configureMotherlodeWall(rock: LocType, drained: LocType, ore: ObjType, respawnTime: Int, miningXp : Double, miningLevel: Int, isWall : Boolean = false) {
-        edit(rock) {
-            contentGroup = content.rocks
-            param[params.respawn_time] = respawnTime
-            param[params.despawn_time] = rate(39, 45)
+            param[params.motherlode] = motherlode
             param[params.levelrequire] = miningLevel // Set the required mining level
             param[params.skill_xp] = PlayerStatMap.toFineXP(miningXp).toInt()
             param[params.skill_productitem] = ore
