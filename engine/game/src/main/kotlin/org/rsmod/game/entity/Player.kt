@@ -63,7 +63,7 @@ public class Player(
         pendingSequence = EntitySeq.ZERO
     }
 
-    override val collisionStrategy: CollisionStrategy = CollisionStrategy.Normal
+    override var collisionStrategy: CollisionStrategy = CollisionStrategy.Normal
 
     override val blockWalkCollisionFlag: Int = CollisionFlag.BLOCK_NPCS
 
@@ -252,6 +252,7 @@ public class Player(
     public var refaceDelay: Int = -1
 
     public var lootDropDuration: Int? = null
+    public var noclipEnabled: Boolean = false
 
     public val appearance: Appearance = Appearance()
     public var bas: UnpackedBasType? by appearance::bas

@@ -12,6 +12,9 @@ import org.rsmod.game.entity.Player
 import org.rsmod.game.movement.MoveSpeed
 import org.rsmod.game.movement.RouteDestination
 import org.rsmod.game.movement.RouteRequest
+import org.rsmod.game.movement.RouteRequestCoord
+import org.rsmod.game.movement.RouteRequestLoc
+import org.rsmod.game.movement.RouteRequestPathingEntity
 import org.rsmod.map.CoordGrid
 import org.rsmod.routefinder.Route
 import org.rsmod.routefinder.collision.CollisionFlagMap
@@ -37,7 +40,19 @@ constructor(
     }
 
     private fun Player.routeTo(request: RouteRequest) {
-        val route = routeFactory.create(avatar, request)
+        // Use noclip collision strategy if noclip is enabled
+        val route = if (noclipEnabled) {
+            val noclipStrategy = object : org.rsmod.routefinder.collision.CollisionStrategy {
+                override fun canMove(tileFlag: Int, blockFlag: Int): Boolean = true
+            }
+            when (request) {
+                is RouteRequestCoord -> routeFactory.create(avatar, request.destination, noclipStrategy)
+                is RouteRequestPathingEntity -> routeFactory.create(avatar, request.destination, noclipStrategy)
+                is RouteRequestLoc -> routeFactory.create(avatar, request, noclipStrategy)
+            }
+        } else {
+            routeFactory.create(avatar, request)
+        }
         cachedMoveSpeed = tempMoveSpeed ?: varMoveSpeed
         moveSpeed = cachedMoveSpeed
         consumeRoute(route)
@@ -111,13 +126,20 @@ constructor(
         coords = current
     }
 
-    private fun Player.validatedStep(current: CoordGrid, target: CoordGrid): CoordGrid =
-        stepFactory.validated(
+    private fun Player.validatedStep(current: CoordGrid, target: CoordGrid): CoordGrid {
+        // Check if player has noclip enabled - if so, bypass all validation
+        if (this.noclipEnabled) {
+            // For noclip players, return the unvalidated step directly
+            return stepFactory.unvalidated(current, target)
+        }
+
+        return stepFactory.validated(
             source = current,
             dest = target,
             size = size,
             extraFlag = CollisionFlag.BLOCK_PLAYERS,
         )
+    }
 
     private fun Player.addBlockWalkCollision(coords: CoordGrid) {
         if (!hidden) {

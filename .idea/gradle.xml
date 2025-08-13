@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -106,6 +107,7 @@
             <option value="$PROJECT_DIR$/api/utils/utils-time" />
             <option value="$PROJECT_DIR$/api/utils/utils-vars" />
             <option value="$PROJECT_DIR$/api/utils/utils-zone" />
+            <option value="$PROJECT_DIR$/api/vardumper" />
             <option value="$PROJECT_DIR$/api/weapons" />
             <option value="$PROJECT_DIR$/build-logic" />
             <option value="$PROJECT_DIR$/content" />
@@ -130,6 +132,7 @@
             <option value="$PROJECT_DIR$/content/interfaces/prayer-tab" />
             <option value="$PROJECT_DIR$/content/interfaces/settings" />
             <option value="$PROJECT_DIR$/content/interfaces/skill-guides" />
+            <option value="$PROJECT_DIR$/content/minigame" />
             <option value="$PROJECT_DIR$/content/other" />
             <option value="$PROJECT_DIR$/content/other/commands" />
             <option value="$PROJECT_DIR$/content/other/login" />
@@ -142,6 +145,7 @@
             <option value="$PROJECT_DIR$/content/skills/fishing" />
             <option value="$PROJECT_DIR$/content/skills/magic" />
             <option value="$PROJECT_DIR$/content/skills/magic/spell-attacks" />
+            <option value="$PROJECT_DIR$/content/skills/mining" />
             <option value="$PROJECT_DIR$/content/skills/woodcutting" />
             <option value="$PROJECT_DIR$/content/travel" />
             <option value="$PROJECT_DIR$/content/travel/canoe" />
