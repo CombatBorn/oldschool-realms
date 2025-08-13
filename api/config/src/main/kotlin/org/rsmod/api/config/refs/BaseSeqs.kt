@@ -340,4 +340,5 @@ object BaseSeqs : SeqReferences() {
     val human_mining_crystal_pickaxe_wall = find("human_mining_crystal_pickaxe_wall")
     val human_mining_gilded_pickaxe_wall = find("human_mining_gilded_pickaxe_wall")
     val human_mining_3a_pickaxe_wall = find("human_mining_3a_pickaxe_wall")
+    val human_smallnet = find("human_smallnet")
 }

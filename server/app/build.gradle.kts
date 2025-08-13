@@ -25,6 +25,7 @@ dependencies {
     implementation(projects.api.parsers.toml)
     implementation(projects.api.registry)
     implementation(projects.api.shops)
+    implementation(projects.content.other.commands)
     implementation(projects.engine.annotations)
     implementation(projects.engine.events)
     implementation(projects.engine.game)
