@@ -51,10 +51,7 @@ import org.rsmod.map.zone.ZoneKey
 import org.rsmod.objtx.TransactionResult
 import org.rsmod.plugin.scripts.PluginScript
 import org.rsmod.plugin.scripts.ScriptContext
-import org.rsmod.routefinder.collision.CollisionStrategy
-import org.rsmod.routefinder.collision.CollisionFlagMap
 import org.rsmod.routefinder.loc.LocLayerConstants
-import org.rsmod.api.route.StepFactory
 import org.simmetrics.metrics.StringMetrics
 
 class AdminCommands
@@ -74,17 +71,7 @@ constructor(
     private val npcRepo: NpcRepository,
     private val names: NameMapping,
     private val update: GameUpdate,
-    private val collision: CollisionFlagMap,
 ) : PluginScript() {
-    private object NoclipCollisionStrategy : CollisionStrategy {
-        override fun canMove(tileFlag: Int, blockFlag: Int): Boolean = true
-    }
-
-    private val originalStrategies = mutableMapOf<Player, CollisionStrategy>()
-
-    companion object {
-        val noclipPlayers = mutableSetOf<Player>()
-    }
 
     private val logger = InlineLogger()
 
@@ -106,6 +93,9 @@ constructor(
         onCommand("anim", "Play animation", ::anim)
         onCommand("spot", "Play spotanim", ::spotanim) {
             invalidArgs = "Use as ::spot spotanimDebugNameOrId (ex: fx_emote_party01_active)"
+        }
+        onCommand("noclip", "Toggle noclip", ::noclip) {
+            invalidArgs = "Use as ::noclip (ex: ::noclip)"
         }
         onCommand("locadd", "Spawn loc", ::locAdd) {
             invalidArgs = "Use as ::locadd duration locDebugNameOrId (ex: 100 bookcase)"
@@ -150,34 +140,33 @@ constructor(
                 player.statRevert(
                     stat,
                     level.toInt(),
-                    PlayerSkillXPTable.getXPFromLevel(level.toInt())
+                    PlayerSkillXPTable.getXPFromLevel(level.toInt()),
                 )
             else
                 player.statAdvance(stat, xpDiff, 1.0, 1.0)
         }
 
+    private fun noclip(cheat: Cheat) = with(cheat) {
+        if (player.noclipEnabled) {
+            player.noclipEnabled = false
+            player.mes("Noclip mode disabled")
+        } else {
+            player.noclipEnabled = true
+            player.mes("Noclip mode enabled - you can now walk on water/restricted tiles")
+        }
+    }
+
     private fun reset(cheat: Cheat) = with(cheat) { player.setStatLevels(level = 1) }
 
     private fun mypos(cheat: Cheat) =
         with(cheat) {
-
-            if (args.isNotEmpty() && args[0].equals("noclip", ignoreCase = true)) {
-                if (player.noclipEnabled) {
-                    player.noclipEnabled = false
-                    player.mes("Noclip mode disabled")
-                } else {
-                    player.noclipEnabled = true
-                    player.mes("Noclip mode enabled - you can now walk on water/restricted tiles")
-                }
-            } else {
-                println("${player.coords}")
-                player.mes("${player.coords}:")
-                player.mes("  ${ZoneKey.from(player.coords)} - ${ZoneGrid.from(player.coords)}")
-                player.mes(
-                    "  ${MapSquareKey.from(player.coords)} - ${MapSquareGrid.from(player.coords)}",
-                )
-                player.mes("  BuildArea(${player.buildArea})")
-            }
+            println("${player.coords}")
+            player.mes("${player.coords}:")
+            player.mes("  ${ZoneKey.from(player.coords)} - ${ZoneGrid.from(player.coords)}")
+            player.mes(
+                "  ${MapSquareKey.from(player.coords)} - ${MapSquareGrid.from(player.coords)}",
+            )
+            player.mes("  BuildArea(${player.buildArea})")
         }
 
 
